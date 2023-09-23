@@ -29,6 +29,15 @@ public class Fornecedor {
 		this.id = id;
 	}
 
+	public Fornecedor() {
+	
+	}
+	
+	public Fornecedor(@NotNull @Size(min = 2, max = 200) String razaoSocial) {
+		super();
+		this.razaoSocial = razaoSocial;
+	}
+
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}
