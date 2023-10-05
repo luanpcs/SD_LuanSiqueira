@@ -10,40 +10,39 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 @Entity
-public class Fornecedor {
-	
+public class Fornecedor
+{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	@ManyToMany
+	private List<Produto> listaProduto;
+
 	@NotNull
 	@Size(min = 2, max = 200)
 	private String razaoSocial;
 	
+	//construtores
+	public Fornecedor()
+	{
+		
+	}
+	
+	public Fornecedor(@NotNull @Size(min = 2, max = 200) String razaoSocial)
+	{
+		super();
+		this.razaoSocial = razaoSocial;
+	}
+
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Fornecedor() {
-	
-	}
-	
-	public Fornecedor(@NotNull @Size(min = 2, max = 200) String razaoSocial) {
-		super();
-		this.razaoSocial = razaoSocial;
-	}
-
-	public String getRazaoSocial() {
-		return razaoSocial;
-	}
-
-	public void setRazaoSocial(String razaoSocial) {
-		this.razaoSocial = razaoSocial;
 	}
 
 	public List<Produto> getListaProduto() {
@@ -53,9 +52,6 @@ public class Fornecedor {
 	public void setListaProduto(List<Produto> listaProduto) {
 		this.listaProduto = listaProduto;
 	}
-
-	@ManyToMany
-	private List<Produto> listaProduto;
 
 	@Override
 	public int hashCode() {
@@ -73,8 +69,5 @@ public class Fornecedor {
 		Fornecedor other = (Fornecedor) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 }
-
 
